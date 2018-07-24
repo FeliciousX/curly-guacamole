@@ -1,14 +1,17 @@
 <h2>Users</h2>
 
-<ul>
-  <li *ngFor="let user of users"
+<mat-list>
+  <mat-list-item *ngFor="let user of users"
     [class.selected]="user === selectedUser"
     (click)="onSelect(user)">
-    <span>{{user.name.title}} {{user.name.first}} {{user.name.last}}</span>
-  </li>
-</ul>
+    <img matListAvatar src="{{user.picture.thumbnail}}" alt="{{user.name.first}}"/>
+    <!-- can be better by using CSS and the names can be concatenated in component logic first -->
+    <h3 matLine style="text-transform: capitalize;">{{user.name.title}} {{user.name.first}} {{user.name.last}}</h3>
+    <p matLine><span>{{user.phone}}</span></p>
+  </mat-list-item>
+</mat-list>
 
-<button (click)="getPrevUsers()">Prev</button>
-<button (click)="getNextUsers()">Next</button>
+<button mat-raised-button color="primary" (click)="getPrevUsers()">Prev</button>
+<button mat-raised-button color="primary" (click)="getNextUsers()">Next</button>
 
 <app-user-detail [user]="selectedUser"></app-user-detail>
