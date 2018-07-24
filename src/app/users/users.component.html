@@ -1,17 +1,21 @@
-<mat-spinner *ngIf="users.length === 0"></mat-spinner>
-<mat-list>
-  <mat-list-item *ngFor="let user of users"
-    [class.selected]="user === selectedUser"
-    (click)="openDialog(user)">
-    <img matListAvatar src="{{user.picture.thumbnail}}" alt="{{user.name.first}}"/>
-    <!-- can be better by using CSS and the names can be concatenated in component logic first -->
-    <h3 matLine style="text-transform: capitalize;">{{user.name.title}} {{user.name.first}} {{user.name.last}}</h3>
-    <p matLine><span>{{user.phone}}</span></p>
-  </mat-list-item>
-</mat-list>
+<mat-spinner *ngIf="loading" color="accent"></mat-spinner>
+<div class="content">
+  <mat-list>
+    <mat-list-item *ngFor="let user of users"
+      [class.selected]="user === selectedUser"
+      (click)="openDialog(user)">
+      <img matListAvatar src="{{user.picture.thumbnail}}" alt="{{user.name.first}}"/>
+      <!-- can be better by using CSS and the names can be concatenated in component logic first -->
+      <h3 matLine style="text-transform: capitalize;">{{user.name.title}} {{user.name.first}} {{user.name.last}}</h3>
+      <p matLine><span>{{user.phone}}</span></p>
+    </mat-list-item>
+  </mat-list>
 
-<!-- NOTE: length is required by this component, for now use 99999,
-  if we want to handle infinity, need to build our own paginator component -->
-<mat-paginator [length]="99999"
-  [pageSize]="10"
-  (page)="paginate($event)"></mat-paginator>
+  <!-- NOTE: length is required by this component, for now use 99999,
+    if we want to handle infinity, need to build our own paginator component -->
+  <mat-paginator
+    *ngIf="users.length > 0"
+    [length]="99999"
+    [pageSize]="10"
+    (page)="paginate($event)"></mat-paginator>
+</div>

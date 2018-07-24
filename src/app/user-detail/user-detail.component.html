@@ -1,20 +1,27 @@
-<h1 mat-dialog-title style="text-transform: uppercase;">{{data.name.title}} {{data.name.first}} {{data.name.last}}</h1>
+<h1 mat-dialog-title style="text-transform: capitalize;">{{data.name.title}} {{data.name.first}} {{data.name.last}}</h1>
 <div mat-dialog-content>
-  <div>
-    <label>Phone</label>: <span>{{ data.phone }}</span>
-  </div>
-  <div>
-    <label>Email</label>: <span>{{ data.email }}</span>
-  </div>
-  <div>
-    <label>Gender</label>: <span>{{ data.gender }}</span>
-  </div>
-  <div>
-    <label>Birthday</label>: <span>{{ data.dob.date | date }}</span>
-  </div>
-  <div>
-    <label>City</label>: <span>{{ data.location.city }}</span>
-  </div>
+  <mat-list>
+    <mat-list-item>
+      <h4 mat-line>Phone</h4>
+      <p mat-line> {{data.phone}} </p>
+    </mat-list-item>
+    <mat-list-item>
+      <h4 mat-line>Email</h4>
+      <p mat-line> {{data.email}} </p>
+    </mat-list-item>
+    <mat-list-item>
+      <h4 mat-line>Gender</h4>
+      <p mat-line>{{ data.gender }}</p>
+    </mat-list-item>
+    <mat-list-item>
+      <h4 mat-line>Birthday</h4>
+      <p mat-line>{{ data.dob.date | date }}</p>
+    </mat-list-item>
+    <mat-list-item>
+      <h4 mat-line>City</h4>
+      <p mat-line>{{ data.location.city }}</p>
+    </mat-list-item>
+  </mat-list>
 </div>
 <div mat-dialog-actions>
   <button mat-button cdkFocusInitial (click)="dialogRef.close()">Close</button>

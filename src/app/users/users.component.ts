@@ -11,6 +11,7 @@ import { UserDetailComponent } from '../user-detail/user-detail.component';
 })
 export class UsersComponent implements OnInit {
   users: User[] = [];
+  loading = true;
   selectedUser: User;
 
   constructor(private userService: UserService, public dialog: MatDialog) { }
@@ -20,9 +21,12 @@ export class UsersComponent implements OnInit {
   }
 
   getUsers(page: number): void {
-    this.users = [];
+    this.loading = true;
     this.userService.getUsers(page)
-      .subscribe(users => this.users = users);
+    .subscribe(users => {
+      this.loading = false;
+      this.users = users;
+    });
   }
 
   paginate(pageEvent): void {
@@ -32,9 +36,12 @@ export class UsersComponent implements OnInit {
   }
 
   openDialog(user: User): void {
+    this.selectedUser = user;
     const dialogRef = this.dialog.open(UserDetailComponent, {
-      width: '100%',
+      width: '80%',
       data: user
     });
+
+    dialogRef.afterClosed().subscribe(() => this.selectedUser = null);
   }
 }
