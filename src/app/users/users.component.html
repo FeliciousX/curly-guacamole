@@ -1,5 +1,4 @@
-<h2>Users</h2>
-
+<mat-spinner *ngIf="users.length === 0"></mat-spinner>
 <mat-list>
   <mat-list-item *ngFor="let user of users"
     [class.selected]="user === selectedUser"
@@ -11,7 +10,10 @@
   </mat-list-item>
 </mat-list>
 
-<button mat-raised-button color="primary" (click)="getPrevUsers()">Prev</button>
-<button mat-raised-button color="primary" (click)="getNextUsers()">Next</button>
+<!-- NOTE: length is required by this component, for now use 99999,
+  if we want to handle infinity, need to build our own paginator component -->
+<mat-paginator [length]="99999"
+  [pageSize]="10"
+  (page)="paginate($event)"></mat-paginator>
 
 <app-user-detail [user]="selectedUser"></app-user-detail>
