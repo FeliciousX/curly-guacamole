@@ -24,9 +24,6 @@ export class UserService {
     return this.buildUrl(this.params, this.userUrl);
   }
 
-  /**
-   * Return list of users from API
-   */
   getUsers(): Observable<User[]> {
     return this.http.get<{results: User[]}>(this.apiUrl)
     .pipe(
@@ -51,10 +48,6 @@ export class UserService {
     }, `${url}/?`);
   }
 
-  /**
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
