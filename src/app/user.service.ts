@@ -11,11 +11,11 @@ import { User } from './user';
 })
 export class UserService {
   private userUrl = 'https://randomuser.me/api';
-  private params: Record<string, string> = {
-    exc: 'login', // exclude login always (because it's heavy)
+  private params = {
+    exc: 'login', // exclude login (because it's heavy)
     seed: uuidv4(),
     results: '10', // take 10 per page
-    page: '0'
+    page: '1'
   };
 
   constructor(private http: HttpClient) {}
@@ -26,11 +26,8 @@ export class UserService {
 
   /**
    * Return list of users from API
-   *
-   * NOTE: function contains side effect that increments params.page
    */
   getUsers(): Observable<User[]> {
-    this.incrementPage();
     return this.http.get<{results: User[]}>(this.apiUrl)
     .pipe(
       pluck<{results: User[]}, User[]>('results'),
@@ -40,6 +37,12 @@ export class UserService {
 
   incrementPage() {
     this.params.page = (Number.parseInt(this.params.page) + 1).toString();
+  }
+
+  decrementPage() {
+    const n = Number.parseInt( this.params.page );
+    // assign page minus 1 but only if page is more than 1
+    this.params.page = (n > 1 ? n - 1 : n).toString();
   }
 
   private buildUrl(params: Record<string, string>, url: string): string {

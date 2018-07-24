@@ -25,4 +25,16 @@ export class UsersComponent implements OnInit {
     this.userService.getUsers()
       .subscribe(users => this.users = users);
   }
+
+  getNextUsers(): void {
+    this.userService.incrementPage();
+    this.userService.getUsers()
+      .subscribe(users => this.users = users);
+  }
+
+  getPrevUsers(): void {
+    this.userService.decrementPage();
+    this.userService.getUsers()
+      .subscribe(users => this.users = users);
+  }
 }
