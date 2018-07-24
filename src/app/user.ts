@@ -17,7 +17,7 @@ export class User {
     street: string;
     city: string;
     state: string;
-    postcode: string;
+    postcode: number | string;
     coordinates: {
       latitude: string;
       longitude: string;
