@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Inject, Component } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { User } from '../user';
 
 @Component({
@@ -6,12 +7,8 @@ import { User } from '../user';
   templateUrl: './user-detail.component.html',
   styleUrls: ['./user-detail.component.css']
 })
-export class UserDetailComponent implements OnInit {
-  @Input() user: User;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class UserDetailComponent {
+  constructor(
+    public dialogRef: MatDialogRef<UserDetailComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: User) {}
 }

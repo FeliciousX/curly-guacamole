@@ -1,3 +1,21 @@
-<div *ngIf="user">
-  <h2>{{user.name.title}} {{user.name.first}} {{user.name.last}}</h2>
+<h1 mat-dialog-title style="text-transform: uppercase;">{{data.name.title}} {{data.name.first}} {{data.name.last}}</h1>
+<div mat-dialog-content>
+  <div>
+    <label>Phone</label>: <span>{{ data.phone }}</span>
+  </div>
+  <div>
+    <label>Email</label>: <span>{{ data.email }}</span>
+  </div>
+  <div>
+    <label>Gender</label>: <span>{{ data.gender }}</span>
+  </div>
+  <div>
+    <label>Birthday</label>: <span>{{ data.dob.date | date }}</span>
+  </div>
+  <div>
+    <label>City</label>: <span>{{ data.location.city }}</span>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button cdkFocusInitial (click)="dialogRef.close()">Close</button>
 </div>

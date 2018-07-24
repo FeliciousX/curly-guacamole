@@ -2,7 +2,7 @@
 <mat-list>
   <mat-list-item *ngFor="let user of users"
     [class.selected]="user === selectedUser"
-    (click)="onSelect(user)">
+    (click)="openDialog(user)">
     <img matListAvatar src="{{user.picture.thumbnail}}" alt="{{user.name.first}}"/>
     <!-- can be better by using CSS and the names can be concatenated in component logic first -->
     <h3 matLine style="text-transform: capitalize;">{{user.name.title}} {{user.name.first}} {{user.name.last}}</h3>
@@ -15,5 +15,3 @@
 <mat-paginator [length]="99999"
   [pageSize]="10"
   (page)="paginate($event)"></mat-paginator>
-
-<app-user-detail [user]="selectedUser"></app-user-detail>

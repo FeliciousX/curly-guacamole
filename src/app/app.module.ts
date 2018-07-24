@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -27,8 +28,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatButtonModule,
     MatListModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule
   ],
+  entryComponents: [UserDetailComponent],
   providers: [
     httpInterceptorProviders
   ],
